@@ -1,10 +1,7 @@
-import { useEffect } from 'react';
 import { Outlet, Link, useLocation } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import HomeIcon from "@mui/icons-material/Home";
-import SvgIcon from "@mui/material/SvgIcon";
-import List from "./List/List";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useDispatch } from "react-redux";
 import { useState } from "react";

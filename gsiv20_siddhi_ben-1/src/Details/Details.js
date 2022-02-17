@@ -10,7 +10,8 @@ import Typography from '@mui/material/Typography';
 
 const Details = () => {
     const [ movieDetail, setMovieDetail ] = useState([]);
-    const [genres_, setGenres] = useState([]);
+    const [ credits, setCredits ] = useState([]);
+    const [ director, setDirector ] = useState([]);
     const { id } = useParams();
     useEffect(() => {
         axios({
@@ -20,8 +21,14 @@ const Details = () => {
         .then(res => {
             console.log('res', res);
             setMovieDetail([ res.data ]);
-            // console.log('genres', res.data.genres);
-            setGenres([...res.data.genres]);
+        });
+        axios({
+            method: "get",
+            url: `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${env.key}&language=en-US`
+        })
+        .then(res => {
+            console.log('res credit', res);
+            setCredits([ ...res.data.cast ]);
         });
     }, []);
 
@@ -45,7 +52,7 @@ const Details = () => {
                             {data.release_date.slice(0,4)} | {data.runtime} mins
                         </Typography>
                         <Typography variant="subtitle1" component="div">
-                            Genres: {genres_.map(res => (res.name + ', '))}
+                            Cast: {credits.map(res => (res.name + ', '))}
                         </Typography>
                         <Typography variant="subtitle1" component="div">
                             Description: {data.overview}

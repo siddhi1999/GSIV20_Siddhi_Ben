@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import env from "../../../secret.json";
 import axios from "axios";
 
@@ -7,7 +7,7 @@ export const fetchMovieList = createAsyncThunk(
   async (page) => {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/discover/movie?adult=false&api_key=${env.key}&page=${page}`
+        `https://api.themoviedb.org/3/movie/upcoming?adult=false&api_key=${env.key}&page=${page}`
       );
       return response.data;
     } catch (err) {
@@ -21,7 +21,7 @@ export const searchMovie = createAsyncThunk(
   async ({ page, searchValue }) => {
     try {
       const response = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?adult=false&api_key=${env.key}&language=en-US&page=${page}&query=${searchValue}`
+        `https://api.themoviedb.org/3/discover/search/movie?adult=false&api_key=${env.key}&language=en-US&page=${page}&query=${searchValue}`
       );
       return response.data;
     } catch (err) {
