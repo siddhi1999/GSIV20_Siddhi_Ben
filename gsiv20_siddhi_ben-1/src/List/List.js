@@ -10,6 +10,7 @@ import "./List.css";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchMovieList } from "../reducers/Slices/Movie/movieSlice";
 import { searchMovie } from "../reducers/Slices/Movie/movieSlice";
+import noMovie from "../assets/noMovie.png";
 
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
@@ -29,7 +30,10 @@ const List = () => {
 
 	return (
 		<div>
-			<div className="movie-card-wrapper">
+			<div
+				className="movie-card-wrapper"
+				style={{ justifyContent: "flex-start" }}
+			>
 				{results.length ? (
 					results.map((data, index) => {
 						return (
@@ -43,16 +47,32 @@ const List = () => {
 										<CardMedia
 											component="img"
 											height="100em"
-											image={`https://www.themoviedb.org/t/p/w150_and_h150_face${data.poster_path}`}
+											image={
+												data.poster_path
+													? `https://www.themoviedb.org/t/p/w150_and_h150_face${data.poster_path}`
+													: noMovie
+											}
 										/>
 										<CardContent>
-											<Typography gutterBottom variant="h6" component="div" style= {{'display': 'flex'}}>
-												<div>{data.title}</div><div style={{'textAlign': 'left'}}>({data.vote_average})</div>
+											<Typography
+												gutterBottom
+												variant="h6"
+												component="div"
+												style={{
+													display: "flex",
+													justifyContent: "space-between",
+												}}
+											>
+												<div>{data.title}</div>
+												<div style={{ textAlign: "left" }}>
+													({data.vote_average}/10)
+												</div>
 											</Typography>
 											<Typography variant="body2" color="text.secondary">
 												{data.overview.length > 40
-													? data.overview.substring(0, 40)
-													: data.overview}...
+													? data.overview.substring(0, 37)
+													: data.overview}
+												...
 											</Typography>
 										</CardContent>
 									</CardActionArea>
@@ -73,10 +93,12 @@ const List = () => {
 				;
 			</div>
 
-			<hr  style={{
-							color: '#DFDFDF',
-							height: 1,
-						}}/>
+			<hr
+				style={{
+					color: "#DFDFDF",
+					height: 1,
+				}}
+			/>
 
 			{total_pages && total_pages !== page ? (
 				<Button

@@ -24,8 +24,8 @@ const Layout = () => {
 		<>
 			<nav>
 				<ul style={{ listStyle: "none" }}>
-					<li style={{ 'display': 'flex', "justify-content": "space-between" }}>
-						{location.pathname === "/" ?
+					<li style={{ display: "flex", justifyContent: "space-between" }}>
+						{location.pathname === "/" ? (
 							<TextField
 								id="outlined-basic"
 								variant="filled"
@@ -40,21 +40,22 @@ const Layout = () => {
 								size="small"
 								onChange={handleClick}
 								value={searchInput}
-								style={{ width: "60%" }}
+								style={{ width: "30%" }}
 							/>
-							:
+						) : (
 							<p>Movie Details </p>
-						}
+						)}
 
 						<Link to="/" style={{ textDecoration: "none" }}>
-							<HomeIcon fontSize="large" color= "black" />
+							<HomeIcon fontSize="large" color="black" />
 						</Link>
-
 					</li>
 				</ul>
-				<hr  style={{
-							color: '#DFDFDF',
-						}}/>
+				<hr
+					style={{
+						color: "#DFDFDF",
+					}}
+				/>
 			</nav>
 
 			<Outlet />
