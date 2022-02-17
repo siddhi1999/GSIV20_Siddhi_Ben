@@ -17,8 +17,4 @@ b. Highlights:
 
 c. Points I could have improved:
 
-1. The styling could have been better. But I gave my best shot given the deadline.
-
-d. Feedback:
-
-1. In the task details, it's mentioned to display the cast details and director's name. But in the API there's no such data for these mentioned details.
+1. The styling could have been better. But I gave my best shot given the deadline. If I've got 4 more hours I would improve it.
