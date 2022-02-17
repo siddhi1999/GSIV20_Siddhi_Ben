@@ -46,13 +46,13 @@ const List = () => {
 											image={`https://www.themoviedb.org/t/p/w150_and_h150_face${data.poster_path}`}
 										/>
 										<CardContent>
-											<Typography gutterBottom variant="h5" component="div">
-												{data.title}
+											<Typography gutterBottom variant="h6" component="div" style= {{'display': 'flex'}}>
+												<div>{data.title}</div><div style={{'textAlign': 'left'}}>({data.vote_average})</div>
 											</Typography>
 											<Typography variant="body2" color="text.secondary">
-												{data.overview.length > 20
-													? data.overview.substring(0, 20)
-													: data.overview}
+												{data.overview.length > 40
+													? data.overview.substring(0, 40)
+													: data.overview}...
 											</Typography>
 										</CardContent>
 									</CardActionArea>
@@ -72,6 +72,11 @@ const List = () => {
 				)}
 				;
 			</div>
+
+			<hr  style={{
+							color: '#DFDFDF',
+							height: 1,
+						}}/>
 
 			{total_pages && total_pages !== page ? (
 				<Button
